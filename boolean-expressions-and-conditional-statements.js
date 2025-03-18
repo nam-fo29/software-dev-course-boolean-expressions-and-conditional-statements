@@ -27,13 +27,41 @@ Paste the following code into your editor:
 const readline = require('readline-sync');
 
 const hasTorch = true;
-const hasMap = false;
+const hasMap = true;
+const hasSword = true;
+
+const availableItems = ["Torch", "Map", "Sword"];
+let playerItem = null;
+
+console.log("You can take one of the following items with you: a Torch, a Map, or a Sword.");
+const choice1 = readline.question("Which of the items do you take?");
+
+if (availableItems.includes(choice1)) {
+  playerItem = choice1;
+  console.log(`You now have a ${playerItem}!`);
+}
+
+console.log("You enter the forest and a bear stands before you!");
+
+if  (playerItem === "Torch") {
+  console.log("You waive the torch furiously, scaring away the bear!");
+} else if (playerItem === "Map") {
+  console.log("You use the map to find a way around the animal.");
+} else if (playerItem === "Sword") {
+  console.log("You strike the bear with the sword causing it to flee in fear!");
+} else {
+  console.log("You are defenseless and the bear attacks you!");
+  console.log("Game Over!");
+  return;
+}
+
+
 
 console.log("You see two paths: one leads to the mountains, the other to the village.");
 const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
 
 if (choice === "mountains" && hasTorch) {
-  console.log("You safely navigate through the dark mountains.");
+  console.log("You safely navigate through the dark mountains and arrive at an abandonded castle.");
 } else if (choice === "mountains" && !hasTorch) {
   console.log("It's too dark to proceed. You decide to turn back.");
 } else if (choice === "village" || hasMap) {
